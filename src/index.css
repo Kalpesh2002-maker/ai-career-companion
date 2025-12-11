@@ -1,0 +1,222 @@
+/* index.css - reset, variables, global form + button rules, label rules */
+
+/* Global reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  color-scheme: dark;
+  --bg-1: #0f172a;
+  --bg-2: #020617;
+  --text-primary: #e6eef8;
+  --text-muted: #9ca3af;
+  --accent: #38bdf8;
+  --accent-soft: rgba(56,189,248,0.18);
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial, "Noto Sans", sans-serif;
+  background: radial-gradient(circle at top, var(--bg-1) 0%, var(--bg-2) 45%, #000 100%);
+  color: var(--text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+/* Links */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Default label styles (for white panels) */
+label {
+  color: #0f172a;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 6px;
+}
+
+/* Labels inside dark panels/cards should be light */
+.card label,
+.dark-panel label {
+  color: #e6eef8;
+}
+
+/* Default form controls (dark-theme primary) */
+input,
+textarea {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border-radius: 0.75rem;
+  border: 1px solid #1f2937;
+  background: #021019;         /* dark input background */
+  color: #e6eef8;              /* light input text on dark backgrounds */
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+/* Placeholder color for dark inputs */
+input::placeholder,
+textarea::placeholder {
+  color: #6b7280;
+}
+
+/* Focus state */
+input:focus,
+textarea:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 1px var(--accent-soft);
+  background: #021019;
+}
+
+/* Buttons */
+button {
+  background: var(--accent);
+  color: #021019;
+  font-weight: 700;
+  padding: 0.55rem 1.1rem;
+  border-radius: 999px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: background 0.12s ease, transform 0.08s ease, box-shadow 0.12s ease;
+}
+
+button:hover {
+  background: #0ea5e9;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 25px rgba(56, 189, 248, 0.25);
+}
+
+/* White panel inputs - override so inputs are readable on white panel */
+.form-panel input,
+.form-panel textarea {
+  background: #ffffff;
+  color: #0f172a;
+  border: 1px solid #e6e6e6;
+}
+
+/* If you prefer dark inputs inside form-panel, change to:
+.form-panel input,
+.form-panel textarea {
+  background: #071024;
+  color: #e6eef8;
+}
+*/
+
+/* Utility: make explicit dark panels slightly darker forms */
+.dark-panel input,
+.dark-panel textarea {
+  background: #021019;
+  color: #e6eef8;
+}
+
+/* Small helpers */
+.muted {
+  color: var(--text-muted);
+}
+
+/* Accessibility: ensure focus outlines */
+:focus {
+  outline: none;
+}
+
+/* Small print and footer tweaks */
+.footer {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+/* Fix labels & section titles inside white form panels */
+.form-panel label,
+.form-panel h2,
+.form-panel h3,
+.form-panel .section-title {
+  color: #0f172a !important; /* strong dark navy */
+  font-weight: 700;
+}
+
+
+
+/* ---- Improve preview card contrast and typography ---- */
+
+/* Make preview card background slightly richer and remove washed overlay */
+.card.preview-card {
+  background: linear-gradient(180deg, rgba(5,18,30,0.95) 0%, rgba(2,12,18,0.95) 100%);
+  border: 1px solid rgba(56,189,248,0.06);
+  box-shadow: 0 30px 70px rgba(2,8,20,0.7);
+}
+
+/* Stronger heading colors inside preview card */
+.card.preview-card h1 {
+  color: #f8fafc;         /* bright, near-white */
+  font-size: 1.8rem;
+  font-weight: 800;
+  margin: 0 0 6px 0;
+  letter-spacing: -0.01em;
+}
+
+.card.preview-card h3 {
+  color: #dbeafe;         /* soft but visible */
+  font-size: 1.05rem;
+  margin: 6px 0 12px 0;
+  font-weight: 700;
+}
+
+/* Make paragraph / meta text readable */
+.card.preview-card p,
+.card.preview-card .muted {
+  color: #9fb7c9;         /* pleasant readable blue-gray */
+  opacity: 1;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Make the horizontal rule subtle but visible */
+.card.preview-card hr {
+  border: none;
+  height: 1px;
+  background: rgba(255,255,255,0.06);
+  margin: 14px 0;
+}
+
+/* Experience block title stronger */
+.card.preview-card h2 {
+  color: #e6f0fb;
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+}
+
+/* Experience bullets / pre text */
+.card.preview-card pre,
+.card.preview-card .experience-item,
+.card.preview-card strong {
+  color: #e6eef8;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* Remove any accidental faded overlay inside preview (if present) */
+.card.preview-card .overlay,
+.card.preview-card .faded {
+  display: none !important;
+}
+
+/* Slight padding tweak so text doesn't feel cramped */
+.card.preview-card {
+  padding: 1.6rem 1.8rem;
+}
